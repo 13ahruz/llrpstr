@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Edit Product</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color: purple;">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Home</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggle-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/users}">Users</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+<br>
+<div class = "container">
+  <div class = "row">
+    <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+      <h1 class = "text-center"> Update User Role </h1>
+      <div class = "card-body">
+        <form th:action="@{/users/{id}(id=${user.id})}" th:object = "${user}" method="POST">
+          <div class ="form-group">
+            <label> User First Name </label>
+            <label>
+              <input
+                      type = "text"
+                      name = "user_first_name"
+                      th:field = "*{firstName}"
+                      class = "form-control"
+                      placeholder="Enter User First Name"
+                      disabled
+              />
+            </label>
+          </div>
+
+          <div class ="form-group">
+            <label> User Last Name </label>
+            <label>
+              <input
+                      type = "text"
+                      name = "user_last_name"
+                      th:field = "*{lastName}"
+                      class = "form-control"
+                      placeholder="Enter User Last Name"
+                      disabled
+              />
+            </label>
+          </div>
+
+          <div class ="form-group">
+            <label> User Email </label>
+            <label>
+              <input
+                      type = "text"
+                      name = "user_email"
+                      th:field = "*{email}"
+                      class = "form-control"
+                      placeholder="Enter User Email"
+                      disabled
+              />
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>User Role</label>
+            <select name="user_roles" th:field="*{rolesAsString}" class="form-control">
+              <option value="ROLE_ADMIN">Admin</option>
+              <option value="ROLE_USER">User</option>
+            </select>
+          </div>
+
+          <div class = "box-footer">
+            <button type="submit" class = "btn btn-primary" style="background-color: #FDFD96; color: black;">
+              Submit
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

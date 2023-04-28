@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      lang="en"
+>
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Home</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+</head>
+<style>
+      .navbar-inverse {
+        background-color: purple;
+        border-color: #FFC107;
+      }
+    </style>
+<body>
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+
+      <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+<br>
+
+
+
+<div class="container">
+  <h1>Welcome <span sec:authentication="principal.username"></span></h1>
+</div>
+
+<div class="container">
+    <a href="#" th:href="@{/magazines}" th:text="Magazines" class = "btn btn-primary" style="background-color: #FDFD96; color: black;"></a>
+    <a href="#" th:href="@{/articles}" th:text="Articles" class = "btn btn-primary" style="background-color: #FDFD96; color: black;"></a>
+    <span sec:authorize="hasRole('ADMIN')"><a href="#" th:href="@{/users}" th:text="Users" class = "btn btn-primary" style="background-color: #FDFD96; color: black;"></a></span>
+</div>
+
+</body>
+</html>
